@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#071512">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Warisan Ilmu">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Warisan Ilmu">
+<meta name="description" content="Warisan Ilmu — Portal Aplikasi Kajian Tauhid, Ma'rifat, ESQ & Materi Interaktif oleh Deka Sonjaya">
+<title>Warisan Ilmu — Deka Sonjaya | Modern Spiritual</title>
+<link id="manifestLink" rel="manifest">
+<link id="appleIconLink" rel="apple-touch-icon">
+<link id="favIconLink" rel="icon" type="image/png">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --gold:#c9a86a;
+  --gold2:#e8d5a8;
+  --gold3:#fff3cf;
+  --green:#0f2e26;
+  --green2:#153e33;
+  --bg:#06120f;
+  --muted:#c8c0ad;
+  --danger:#ff8f8f;
+  --safe-t:env(safe-area-inset-top,0px);
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-l:env(safe-area-inset-left,0px);
+  --safe-r:env(safe-area-inset-right,0px);
+}
+html,body{
+  width:100%;
+  height:100%;
+  height:100dvh;
+  overflow:hidden;
+  background:#040d0b;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:#fff;
+  overscroll-behavior:none;
+  -webkit-font-smoothing:antialiased;
+}
+button,input,select,textarea{font-family:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+a{text-decoration:none;color:inherit}
+
+/* ===== VIEWS ===== */
+.view{
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100dvh;
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+}
+.view.active{display:flex}
+
+/* ===== 1. COVER / PEMBUKA MEWAH ===== */
+#coverView{
+  background:
+    radial-gradient(ellipse at 50% 0%,rgba(27,86,67,.55) 0%,transparent 60%),
+    radial-gradient(ellipse at 50% 100%,rgba(201,168,106,.14) 0%,transparent 55%),
+    linear-gradient(180deg,#081915 0%,#05100d 55%,#030a08 100%);
+}
+.luxury-frame{
+  position:absolute;
+  inset:calc(10px + var(--safe-t)) calc(10px + var(--safe-r)) calc(10px + var(--safe-b)) calc(10px + var(--safe-l));
+  border:1px solid rgba(201,168,106,.68);
+  border-radius:8px;
+  pointer-events:none;
+  z-index:1;
+}
+.luxury-frame:before{
+  content:"";
+  position:absolute;
+  inset:5px;
+  border:1px solid rgba(201,168,106,.28);
+  border-radius:5px;
+}
+.corner{
+  position:absolute;
+  width:38px;
+  height:38px;
+  border:2px solid var(--gold2);
+  pointer-events:none;
+  z-index:2;
+}
+.corner.tl{top:calc(10px + var(--safe-t));left:calc(10px + var(--safe-l));border-right:none;border-bottom:none;border-top-left-radius:8px}
+.corner.tr{top:calc(10px + var(--safe-t));right:calc(10px + var(--safe-r));border-left:none;border-bottom:none;border-top-right-radius:8px}
+.corner.bl{bottom:calc(10px + var(--safe-b));left:calc(10px + var(--safe-l));border-right:none;border-top:none;border-bottom-left-radius:8px}
+.corner.br{bottom:calc(10px + var(--safe-b));right:calc(10px + var(--safe-r));border-left:none;border-top:none;border-bottom-right-radius:8px}
+
+.cover-scroll{
+  position:relative;
+  z-index:3;
+  flex:1;
+  min-height:0;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:calc(24px + var(--safe-t)) calc(24px + var(--safe-r)) calc(24px + var(--safe-b)) calc(24px + var(--safe-l));
+  gap:10px;
+}
+.emblem-wrap{
+  width:74px;
+  height:74px;
+  border-radius:50%;
+  padding:3px;
+  background:linear-gradient(135deg,#fff3cf,#c9a86a,#6e5323);
+  box-shadow:0 12px 30px rgba(0,0,0,.55),0 0 24px rgba(201,168,106,.3);
+  flex:0 0 auto;
+}
+.emblem-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  border-radius:50%;
+  background:#0b231d;
+}
+.cover-brand{
+  font-size:11px;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--gold2);
+  font-weight:700;
+}
+@keyframes shine{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.cover-ribbon{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 18px;
+  border-radius:999px;
+  background:linear-gradient(110deg,#c9a86a 20%,#fff7dd 40%,#e8d5a8 52%,#c9a86a 70%);
+  background-size:200% 100%;
+  animation:shine 4s linear infinite;
+  color:#1a1306;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  box-shadow:0 8px 24px rgba(0,0,0,.45);
+}
+.cover-title{
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:clamp(38px,9vw,68px);
+  line-height:1.02;
+  font-weight:700;
+  background:linear-gradient(180deg,#fff7dc 0%,#e8d5a8 55%,#c9a86a 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 6px 20px rgba(0,0,0,.55));
+}
+.cover-subtitle{
+  font-family:Georgia,serif;
+  font-size:clamp(15px,3.8vw,22px);
+  color:#f3ead2;
+  letter-spacing:.03em;
+}
+.gold-divider{
+  width:90px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold2),transparent);
+  margin:2px 0;
+}
+.cover-quote{
+  max-width:580px;
+  font-size:clamp(13.5px,3.4vw,16px);
+  line-height:1.65;
+  color:#e7dfc9;
+  font-style:italic;
+}
+.cover-stats{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  margin-top:2px;
+}
+.stat-pill{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(201,168,106,.4);
+  border-radius:999px;
+  padding:6px 13px;
+  font-size:11.5px;
+  color:#f5eedc;
+  letter-spacing:.05em;
+}
+.stat-pill b{color:var(--gold2)}
+.cover-actions{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  width:100%;
+  max-width:480px;
+  margin-top:6px;
+}
+.btn-primary{
+  flex:1 1 220px;
+  height:52px;
+  border-radius:999px;
+  background:linear-gradient(180deg,#f0dfb4,#c9a86a);
+  color:#191206;
+  font-weight:800;
+  font-size:15px;
+  letter-spacing:.04em;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  box-shadow:0 12px 28px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.65);
+  transition:transform .15s;
+}
+.btn-primary:active{transform:scale(.98)}
+.btn-secondary{
+  flex:0 1 auto;
+  height:52px;
+  padding:0 20px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(201,168,106,.55);
+  color:var(--gold2);
+  font-weight:700;
+  font-size:13.5px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+.btn-secondary:active{transform:scale(.98)}
+.cover-foot{
+  font-size:10.5px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:rgba(232,213,168,.72);
+  margin-top:4px;
+}
+
+/* ===== 2. PORTAL UTAMA ===== */
+#portalView{
+  background:
+    radial-gradient(ellipse at 50% -10%,#144033 0%,#071512 48%,#040d0b 100%);
+}
+.topbar{
+  flex:0 0 auto;
+  padding:calc(10px + var(--safe-t)) calc(14px + var(--safe-r)) 10px calc(14px + var(--safe-l));
+  background:rgba(12,38,31,.94);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(201,168,106,.32);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  z-index:20;
+}
+.top-left{display:flex;align-items:center;gap:10px;min-width:0}
+.top-logo{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  padding:2px;
+  background:linear-gradient(135deg,#fff3cf,#c9a86a);
+  flex:0 0 40px;
+  cursor:pointer;
+}
+.top-logo img{width:100%;height:100%;object-fit:contain;border-radius:50%;background:#0b231d}
+.top-titles{min-width:0;line-height:1.15}
+.top-titles h1{
+  font-family:Georgia,serif;
+  font-size:clamp(16px,4vw,21px);
+  color:#fff6dc;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.top-titles span{
+  display:block;
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--gold2);
+  white-space:nowrap;
+}
+.top-tools{display:flex;align-items:center;gap:6px;flex:0 0 auto}
+.tool-btn{
+  height:38px;
+  padding:0 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(201,168,106,.38);
+  color:#f5eedc;
+  font-size:12px;
+  font-weight:700;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  white-space:nowrap;
+  transition:transform .15s,background .2s;
+}
+.tool-btn:active{transform:scale(.96)}
+.tool-btn.gold{
+  background:linear-gradient(180deg,#e8d5a8,#c9a86a);
+  color:#1a1306;
+  border:none;
+  box-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+.tool-icon{
+  width:38px;
+  height:38px;
+  padding:0;
+  justify-content:center;
+  font-size:15px;
+}
+
+/* Toolbar Filter & Search */
+.filter-bar{
+  flex:0 0 auto;
+  padding:10px calc(14px + var(--safe-r)) 10px calc(14px + var(--safe-l));
+  background:rgba(7,21,18,.9);
+  border-bottom:1px solid rgba(201,168,106,.18);
+}
+.filter-inner{
+  width:100%;
+  max-width:1240px;
+  margin:0 auto;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+.chips{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  overflow-x:auto;
+  scrollbar-width:none;
+  padding-bottom:2px;
+  max-width:100%;
+}
+.chips::-webkit-scrollbar{display:none}
+.chip{
+  height:34px;
+  padding:0 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(201,168,106,.26);
+  color:#dfd7c3;
+  font-size:12px;
+  font-weight:700;
+  white-space:nowrap;
+  transition:all .2s;
+}
+.chip.active{
+  background:linear-gradient(180deg,#e8d5a8,#c9a86a);
+  color:#191206;
+  border-color:transparent;
+}
+.search-box{
+  position:relative;
+  flex:1 1 210px;
+  max-width:320px;
+}
+.search-box input{
+  width:100%;
+  height:36px;
+  padding:0 32px 0 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(201,168,106,.32);
+  color:#fff;
+  font-size:13px;
+  outline:none;
+}
+.search-box input::placeholder{color:rgba(232,213,168,.55)}
+.search-box span{
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:13px;
+  color:var(--gold2);
+  pointer-events:none;
+}
+
+/* Grid Daftar Aplikasi */
+.portal-scroll{
+  flex:1;
+  min-height:0;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  padding:14px calc(14px + var(--safe-r)) calc(24px + var(--safe-b)) calc(14px + var(--safe-l));
+}
+.portal-container{
+  width:100%;
+  max-width:1240px;
+  margin:0 auto;
+}
+.section-info{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:6px;
+  margin-bottom:12px;
+  font-size:12px;
+  color:var(--muted);
+  letter-spacing:.05em;
+}
+.section-info b{color:var(--gold2)}
+.apps-grid{
+  display:grid;
+  grid-template-columns:repeat(1,minmax(0,1fr));
+  gap:12px;
+}
+@media (min-width:560px){
+  .apps-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+}
+@media (min-width:920px){
+  .apps-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+}
+@media (min-width:1200px){
+  .apps-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+}
+
+.app-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  background:linear-gradient(160deg,rgba(19,58,48,.86) 0%,rgba(9,28,23,.95) 100%);
+  border:1px solid rgba(201,168,106,.34);
+  border-radius:16px;
+  padding:16px;
+  box-shadow:0 10px 26px rgba(0,0,0,.42);
+  transition:transform .2s,border-color .2s,box-shadow .2s;
+  overflow:hidden;
+}
+.app-card:before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold2),transparent);
+  opacity:.75;
+}
+.app-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(232,213,168,.85);
+  box-shadow:0 16px 34px rgba(0,0,0,.55),0 0 18px rgba(201,168,106,.16);
+}
+.card-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:10px;
+}
+.card-num{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  background:linear-gradient(135deg,#e8d5a8,#c9a86a);
+  color:#191206;
+  font-weight:900;
+  font-size:13px;
+  display:grid;
+  place-items:center;
+  box-shadow:0 4px 12px rgba(0,0,0,.35);
+  flex:0 0 34px;
+}
+.card-badges{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  min-width:0;
+}
+.card-cat{
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--gold2);
+  background:rgba(201,168,106,.12);
+  border:1px solid rgba(201,168,106,.3);
+  padding:4px 9px;
+  border-radius:999px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.badge-new{
+  font-size:9.5px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  background:#7ef0a8;
+  color:#082217;
+  padding:3px 7px;
+  border-radius:999px;
+  flex:0 0 auto;
+}
+.card-title{
+  font-family:Georgia,serif;
+  font-size:18px;
+  line-height:1.25;
+  color:#fff8e3;
+  margin-bottom:6px;
+}
+.card-desc{
+  font-size:13px;
+  line-height:1.55;
+  color:#d9d2be;
+  margin-bottom:14px;
+  flex:1;
+}
+.card-actions{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-top:auto;
+}
+.btn-open-app{
+  flex:1;
+  height:40px;
+  padding:0 10px;
+  border-radius:10px;
+  background:linear-gradient(180deg,#e8d5a8,#c9a86a);
+  color:#191206;
+  font-weight:800;
+  font-size:12.5px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  white-space:nowrap;
+}
+.btn-open-app:active{transform:scale(.98)}
+.btn-card-icon{
+  width:38px;
+  height:40px;
+  flex:0 0 38px;
+  border-radius:10px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(201,168,106,.34);
+  color:var(--gold2);
+  font-size:14px;
+  display:grid;
+  place-items:center;
+}
+.btn-card-icon:hover{background:rgba(201,168,106,.18)}
+.btn-card-icon.del{color:var(--danger);border-color:rgba(255,143,143,.32)}
+.btn-card-icon.del:hover{background:rgba(255,143,143,.14)}
+
+.empty-state{
+  text-align:center;
+  padding:42px 16px;
+  color:var(--muted);
+  display:none;
+}
+.portal-footer{
+  margin-top:24px;
+  padding-top:16px;
+  border-top:1px solid rgba(201,168,106,.2);
+  text-align:center;
+  font-size:11.5px;
+  color:rgba(232,213,168,.75);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+/* ===== 3. INTEGRATED FULL-SCREEN APP VIEWER ===== */
+#viewerView{background:#000}
+.viewer-bar{
+  flex:0 0 auto;
+  padding:calc(8px + var(--safe-t)) calc(12px + var(--safe-r)) 8px calc(12px + var(--safe-l));
+  background:rgba(11,35,29,.98);
+  border-bottom:1px solid rgba(201,168,106,.38);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  z-index:30;
+}
+.viewer-title{
+  min-width:0;
+  flex:1;
+  text-align:center;
+}
+.viewer-title b{
+  display:block;
+  font-family:Georgia,serif;
+  font-size:14.5px;
+  color:#fff7df;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.viewer-title span{
+  display:block;
+  font-size:10px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--gold2);
+}
+.frame-wrap{
+  position:relative;
+  flex:1;
+  min-height:0;
+  width:100%;
+  background:#071512;
+}
+.frame-wrap iframe{
+  width:100%;
+  height:100%;
+  border:none;
+  display:block;
+  background:#071512;
+}
+.frame-loader{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 50% 45%,#123a2d,#071512);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  text-align:center;
+  padding:20px;
+  z-index:5;
+  transition:opacity .3s;
+}
+.frame-loader.hidden{opacity:0;pointer-events:none}
+.spinner{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  border:3px solid rgba(201,168,106,.25);
+  border-top-color:var(--gold2);
+  animation:spin .85s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===== MODALS (TAMBAH LINK, CADANGAN & INSTAL) ===== */
+.modal-bg{
+  position:fixed;
+  inset:0;
+  z-index:50;
+  background:rgba(0,0,0,.76);
+  backdrop-filter:blur(7px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:calc(14px + var(--safe-t)) calc(14px + var(--safe-r)) calc(14px + var(--safe-b)) calc(14px + var(--safe-l));
+}
+.modal-bg.open{display:flex}
+.modal-card{
+  width:100%;
+  max-width:480px;
+  max-height:88dvh;
+  overflow-y:auto;
+  background:linear-gradient(180deg,#11372c 0%,#081b16 100%);
+  border:1px solid rgba(201,168,106,.62);
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0 24px 50px rgba(0,0,0,.75);
+}
+.modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:14px;
+}
+.modal-head h2{
+  font-family:Georgia,serif;
+  font-size:20px;
+  color:#fff7df;
+}
+.form-group{margin-bottom:12px}
+.form-group label{
+  display:block;
+  font-size:11.5px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--gold2);
+  margin-bottom:6px;
+}
+.form-control{
+  width:100%;
+  background:rgba(4,16,13,.75);
+  border:1px solid rgba(201,168,106,.42);
+  border-radius:11px;
+  padding:11px 13px;
+  font-size:14px;
+  color:#fff;
+  outline:none;
+  transition:border-color .2s;
+}
+.form-control:focus{border-color:var(--gold2)}
+.form-control option{background:#0b231d;color:#fff}
+textarea.form-control{resize:vertical;min-height:76px;line-height:1.5}
+.form-hint{
+  font-size:11.5px;
+  color:var(--muted);
+  margin-top:4px;
+  line-height:1.45;
+}
+.form-error{
+  font-size:12.5px;
+  color:var(--danger);
+  margin-bottom:10px;
+  display:none;
+}
+.modal-actions{
+  display:flex;
+  gap:8px;
+  margin-top:14px;
+}
+.install-box{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(201,168,106,.3);
+  border-radius:12px;
+  padding:12px 14px;
+  margin-bottom:10px;
+  font-size:13.5px;
+  line-height:1.6;
+  color:#ebe4d2;
+}
+.install-box b{color:var(--gold2)}
+.install-box ol{margin:6px 0 0 18px}
+.install-box li{margin-bottom:4px}
+
+/* Toast Notification */
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:calc(20px + var(--safe-b));
+  transform:translateX(-50%) translateY(20px);
+  background:linear-gradient(180deg,#e8d5a8,#c9a86a);
+  color:#191206;
+  font-weight:800;
+  font-size:13px;
+  padding:10px 18px;
+  border-radius:999px;
+  box-shadow:0 12px 28px rgba(0,0,0,.55);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s,transform .25s;
+  z-index:80;
+  white-space:nowrap;
+  max-width:92vw;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Compact short-landscape mobile support */
+@media (orientation:landscape) and (max-height:460px){
+  .emblem-wrap{width:48px;height:48px}
+  .cover-scroll{gap:5px;padding-top:12px;padding-bottom:12px}
+  .cover-quote,.cover-stats{display:none}
+  .cover-title{font-size:32px}
+  .btn-primary,.btn-secondary{height:42px}
+  .topbar{padding-top:6px;padding-bottom:6px}
+  .filter-bar{padding-top:6px;padding-bottom:6px}
+}
+@media (max-width:400px){
+  .hide-xs{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HALAMAN 1: PEMBUKA WARISAN ILMU ===== -->
+<section id="coverView" class="view active">
+  <div class="luxury-frame"></div>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <div class="cover-scroll">
+    <div class="emblem-wrap">
+      <img id="coverLogo" src="logo.png" alt="Logo Deka Sonjaya">
+    </div>
+    <div class="cover-brand">Deka Sonjaya • Modern Spiritual</div>
+    <div class="cover-ribbon">✦ Kumpulan Karya &amp; Kajian Digital ✦</div>
+    <h1 class="cover-title">Warisan Ilmu</h1>
+    <div class="cover-subtitle">— Cahaya Tauhid, Ma’rifat, ESQ &amp; Kesadaran Jiwa —</div>
+    <div class="gold-divider"></div>
+    <p class="cover-quote">“Ilmu yang bermanfaat adalah cahaya yang terus mengalir menerangi kalbu, meluruskan jalan pulang menuju Tuhan, dan menjadi warisan abadi bagi kehidupan.”</p>
+    <div class="cover-stats">
+      <span class="stat-pill"><b id="coverTotalCount">14</b> Aplikasi Interaktif</span>
+      <span class="stat-pill"><b>+ Tambah</b> Link Materi Baru</span>
+      <span class="stat-pill"><b>Full Screen</b> &amp; PWA</span>
+    </div>
+    <div class="cover-actions">
+      <button class="btn-primary" id="btnEnterPortal">Buka Warisan Ilmu &nbsp; →</button>
+      <button class="btn-secondary" id="btnCoverInstall">⬇ Instal</button>
+    </div>
+    <div class="cover-foot">Android • iPhone • iPad • Tablet • Laptop</div>
+  </div>
+</section>
+
+<!-- ===== HALAMAN 2: PORTAL APLIKASI WARISAN ILMU ===== -->
+<section id="portalView" class="view">
+  <header class="topbar">
+    <div class="top-left">
+      <div class="top-logo" id="btnBackCover" title="Kembali ke Halaman Pembuka">
+        <img id="topLogoImg" src="logo.png" alt="Logo">
+      </div>
+      <div class="top-titles">
+        <h1>Warisan Ilmu</h1>
+        <span>Deka Sonjaya • Modern Spiritual</span>
+      </div>
+    </div>
+    <div class="top-tools">
+      <button class="tool-btn gold" id="btnOpenAddModal" title="Tambahkan Link Materi / Aplikasi Baru">＋ <span class="hide-xs">Tambah</span></button>
+      <button class="tool-btn tool-icon" id="btnOpenBackupModal" title="Cadangkan / Pulihkan Link">⇄</button>
+      <button class="tool-btn tool-icon" id="btnHeaderInstall" title="Instal Aplikasi ke Layar Utama">⬇</button>
+      <button class="tool-btn tool-icon" id="btnFullscreen" title="Layar Penuh (Full Screen)">⛶</button>
+    </div>
+  </header>
+
+  <div class="filter-bar">
+    <div class="filter-inner">
+      <div class="chips" id="filterChips"></div>
+      <div class="search-box">
+        <input type="search" id="searchInput" placeholder="Cari judul kajian atau aplikasi...">
+        <span>⌕</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="portal-scroll" id="portalScroll">
+    <div class="portal-container">
+      <div class="section-info">
+        <span id="resultLabel">Menampilkan <b>14</b> aplikasi warisan ilmu</span>
+        <span>Ketuk <b>＋ Tambah</b> untuk menyimpan link materi baru</span>
+      </div>
+      <div class="apps-grid" id="appsGrid"></div>
+      <div class="empty-state" id="emptyState">Tidak ada aplikasi yang sesuai dengan pencarian atau filter Anda.</div>
+      <footer class="portal-footer">Warisan Ilmu • Deka Sonjaya — Modern Spiritual</footer>
+    </div>
+  </main>
+</section>
+
+<!-- ===== HALAMAN 3: INTEGRATED FULL-SCREEN VIEWER ===== -->
+<section id="viewerView" class="view">
+  <header class="viewer-bar">
+    <button class="tool-btn gold" id="btnViewerBack">← Warisan Ilmu</button>
+    <div class="viewer-title">
+      <b id="viewerAppTitle">Judul Aplikasi</b>
+      <span id="viewerAppCat">Deka Sonjaya • Modern Spiritual</span>
+    </div>
+    <div class="top-tools">
+      <a class="tool-btn" id="btnViewerExt" href="#" target="_blank" rel="noopener noreferrer" title="Buka di Tab Browser Baru">Tab Baru ↗</a>
+      <button class="tool-btn tool-icon" id="btnViewerFs" title="Layar Penuh">⛶</button>
+    </div>
+  </header>
+  <div class="frame-wrap">
+    <div class="frame-loader" id="frameLoader">
+      <div class="spinner"></div>
+      <div style="font-family:Georgia,serif;font-size:18px;color:#fff7df" id="loaderTitle">Memuat Kajian...</div>
+      <div style="font-size:12px;color:var(--muted)">Menyiapkan tampilan layar penuh yang presisi</div>
+    </div>
+    <iframe id="appFrame" title="Aplikasi Warisan Ilmu" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  </div>
+</section>
+
+<!-- ===== MODAL TAMBAH / EDIT LINK MATERI BARU ===== -->
+<div class="modal-bg" id="formModal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h2 id="formModalTitle">Tambah Link Materi Baru</h2>
+      <button class="tool-btn tool-icon" id="btnCloseFormModal">✕</button>
+    </div>
+    <form id="appForm" novalidate>
+      <input type="hidden" id="editAppId" value="">
+      <div class="form-group">
+        <label for="inputTitle">Judul Materi / Aplikasi *</label>
+        <input class="form-control" type="text" id="inputTitle" placeholder="Contoh: Kajian Kitab Enam / Rahasia Makrifat" required>
+      </div>
+      <div class="form-group">
+        <label for="inputUrl">Alamat Link Web (URL) *</label>
+        <input class="form-control" type="url" id="inputUrl" placeholder="https://nagapersada.github.io/..." required>
+        <div class="form-hint">Masukkan link aplikasi web interaktif GitHub Pages atau URL web lainnya.</div>
+      </div>
+      <div class="form-group">
+        <label for="inputCat">Kategori Kelompok</label>
+        <select class="form-control" id="inputCat">
+          <option value="baru">Materi &amp; Aplikasi Baru</option>
+          <option value="kitab">Seri Kajian Kitab</option>
+          <option value="marifat">Tauhid &amp; Ma'rifat</option>
+          <option value="praktis">ESQ, Rezeki &amp; Refleksi</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="inputDesc">Ringkasan / Keterangan Materi</label>
+        <textarea class="form-control" id="inputDesc" placeholder="Tuliskan penjelasan singkat tentang isi kajian atau aplikasi ini..."></textarea>
+      </div>
+      <div class="form-error" id="formError"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn-secondary" id="btnCancelForm" style="height:46px;flex:0 0 auto">Batal</button>
+        <button type="submit" class="btn-primary" style="height:46px;flex:1">Simpan ke Warisan Ilmu</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===== MODAL CADANGAN & SINKRONISASI LINK ===== -->
+<div class="modal-bg" id="backupModal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h2>Kelola &amp; Cadangkan Link</h2>
+      <button class="tool-btn tool-icon" id="btnCloseBackupModal">✕</button>
+    </div>
+    <p style="font-size:13.5px;line-height:1.6;color:#e7dfc9;margin-bottom:12px">
+      Link baru yang Anda tambahkan tersimpan otomatis di perangkat ini. Gunakan fitur di bawah untuk mencadangkan atau memindahkan daftar link ke perangkat lain (Android, iPhone, Tablet, Laptop):
+    </p>
+    <div class="install-box">
+      <b>1. Ekspor / Salin Cadangan Link Tambahan</b>
+      <p style="margin-top:4px;font-size:12.5px">Salin data link tambahan Anda agar dapat ditempel di perangkat lain.</p>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="btn-primary" id="btnCopyBackup" style="height:40px;font-size:13px">Salin Kode Cadangan</button>
+      </div>
+    </div>
+    <div class="install-box" style="margin-bottom:0">
+      <b>2. Pulihkan / Impor Link dari Perangkat Lain</b>
+      <textarea class="form-control" id="importJsonInput" placeholder="Tempel kode cadangan JSON di sini..." style="margin-top:8px;min-height:70px;font-size:12px"></textarea>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="btn-secondary" id="btnImportBackup" style="height:40px;flex:1;font-size:13px">Muat &amp; Gabungkan Link</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL PETUNJUK INSTALASI MULTI-PERANGKAT ===== -->
+<div class="modal-bg" id="installModal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h2>Instal Aplikasi Warisan Ilmu</h2>
+      <button class="tool-btn tool-icon" id="btnCloseInstall">✕</button>
+    </div>
+    <p style="font-size:13.5px;line-height:1.6;color:#e7dfc9;margin-bottom:12px">
+      Pasang portal <b>Warisan Ilmu</b> ke layar utama perangkat Anda agar dapat dibuka langsung dalam mode <b>Full Screen</b> layaknya aplikasi native:
+    </p>
+    <div id="directInstallWrap" style="display:none;margin-bottom:12px">
+      <button class="btn-primary" id="btnTriggerNativeInstall" style="width:100%">⬇ Instal Sekarang ke Perangkat</button>
+    </div>
+    <div class="install-box">
+      <b>📱 Android (Chrome / Edge / Samsung Internet):</b>
+      <ol>
+        <li>Ketuk ikon menu <b>⋮</b> (titik tiga di pojok kanan atas).</li>
+        <li>Pilih <b>“Instal aplikasi”</b> atau <b>“Tambahkan ke layar utama”</b>.</li>
+        <li>Ketuk <b>Instal</b> — ikon <b>Warisan Ilmu</b> muncul di layar utama.</li>
+      </ol>
+    </div>
+    <div class="install-box">
+      <b>🍎 iPhone &amp; iPad (Safari):</b>
+      <ol>
+        <li>Buka halaman ini menggunakan browser <b>Safari</b>.</li>
+        <li>Ketuk ikon <b>Bagikan / Share (□↑)</b> di bilah bawah atau atas.</li>
+        <li>Geser ke bawah dan pilih <b>“Tambah ke Layar Utama” (Add to Home Screen)</b>, lalu ketuk <b>Tambah</b>.</li>
+      </ol>
+    </div>
+    <div class="install-box" style="margin-bottom:0">
+      <b>💻 Laptop / PC (Chrome / Edge):</b>
+      <ol>
+        <li>Klik ikon <b>Instal (⊕ / layar dengan panah)</b> di sisi kanan bilah alamat browser, lalu klik <b>Instal</b>.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const DEFAULT_APPS = [
+  {
+    "id": "default-1",
+    "title": "Kajian Kitab Satu",
+    "cat": "kitab",
+    "catLabel": "Seri Kajian Kitab",
+    "url": "https://nagapersada.github.io/Kajian-KItab-Satu/",
+    "desc": "Fondasi awal kajian ilmu ketuhanan, pengenalan diri, dan pembuka pintu pemahaman ma'rifat."
+  },
+  {
+    "id": "default-2",
+    "title": "Kajian Kitab Dua",
+    "cat": "kitab",
+    "catLabel": "Seri Kajian Kitab",
+    "url": "https://nagapersada.github.io/Kajian-Kitab-Dua/",
+    "desc": "Pendalaman lanjutan hakikat penciptaan, martabat alam, serta penyaksian batin seorang hamba."
+  },
+  {
+    "id": "default-3",
+    "title": "Kajian Kitab Tiga",
+    "cat": "kitab",
+    "catLabel": "Seri Kajian Kitab",
+    "url": "https://nagapersada.github.io/Kajian-Kitab-Tiga/",
+    "desc": "Uraian tingkat ketiga mengupas rahasia hubungan syariat, tarekat, hakikat, dan ma'rifat."
+  },
+  {
+    "id": "default-4",
+    "title": "Kajian Kitab Empat",
+    "cat": "kitab",
+    "catLabel": "Seri Kajian Kitab",
+    "url": "https://nagapersada.github.io/Kajian-Kitab-Empat/",
+    "desc": "Kajian mendalam penyucian jiwa, pengokohan tauhid murni, dan adab menjaga rahasia ketuhanan."
+  },
+  {
+    "id": "default-5",
+    "title": "Kajian Kitab Lima",
+    "cat": "kitab",
+    "catLabel": "Seri Kajian Kitab",
+    "url": "https://nagapersada.github.io/Kajian-Kitab-Lima/",
+    "desc": "Puncak rangkaian kajian kitab: rahasia penciptaan, Nur Muhammad, dan Al-Qur'an yang Qadim."
+  },
+  {
+    "id": "default-6",
+    "title": "Kajian Hakekat Alhamdu",
+    "cat": "marifat",
+    "catLabel": "Tauhid & Ma'rifat",
+    "url": "https://nagapersada.github.io/kajian-Hakekat-Alhamdu/",
+    "desc": "Mengupas rahasia lima huruf ALHAMDU, tajalli Nur Muhammad pada diri batin-zahir, serta Insanul Kamil."
+  },
+  {
+    "id": "default-7",
+    "title": "Kajian Al-Qur'an Qadim",
+    "cat": "marifat",
+    "catLabel": "Tauhid & Ma'rifat",
+    "url": "https://nagapersada.github.io/Kajian-AlQuran-Qadim/",
+    "desc": "Memahami Al-Qur'an yang Qadim pada batang tubuh manusia serta cara membaca kitab nafsiah diri."
+  },
+  {
+    "id": "default-8",
+    "title": "Mengenal Hakekat",
+    "cat": "marifat",
+    "catLabel": "Tauhid & Ma'rifat",
+    "url": "https://nagapersada.github.io/Mengenal-Hakekat/",
+    "desc": "Panduan jernih mengenal hakikat diri dan Tuhan dengan tauhid murni yang lurus dan mudah dipahami."
+  },
+  {
+    "id": "default-9",
+    "title": "9 Hukum Rezeki",
+    "cat": "praktis",
+    "catLabel": "ESQ, Rezeki & Refleksi",
+    "url": "https://nagapersada.github.io/9-Hukum-Rezeki/",
+    "desc": "Sembilan hukum universal rezeki selaras sunnatullah dan ketenangan batin dalam menjemput keberkahan."
+  },
+  {
+    "id": "default-10",
+    "title": "Literasi & Refleksi",
+    "cat": "praktis",
+    "catLabel": "ESQ, Rezeki & Refleksi",
+    "url": "https://nagapersada.github.io/Literasi-Refleksi/",
+    "desc": "Kumpulan renungan spiritual, literasi kesadaran diri, dan perenungan makna kehidupan."
+  },
+  {
+    "id": "default-11",
+    "title": "ESQ Way",
+    "cat": "praktis",
+    "catLabel": "ESQ, Rezeki & Refleksi",
+    "url": "https://nagapersada.github.io/ESQWay/",
+    "desc": "Kurikulum interaktif Emotional Spiritual Quotient (ESQ) untuk membangun kecerdasan emosi dan spiritual."
+  },
+  {
+    "id": "default-12",
+    "title": "Karakter Sholat",
+    "cat": "praktis",
+    "catLabel": "ESQ, Rezeki & Refleksi",
+    "url": "https://nagapersada.github.io/Karakter-Sholat/",
+    "desc": "Menyelami nilai pembentuk karakter mulia, kekhusyukan, dan kesadaran batin di balik gerakan sholat."
+  },
+  {
+    "id": "default-13",
+    "title": "Pintu Ketenangan",
+    "cat": "praktis",
+    "catLabel": "ESQ, Rezeki & Refleksi",
+    "url": "https://nagapersada.github.io/Pintu-Ketenangan/",
+    "desc": "Tuntunan menata hati, melepaskan kegelisahan, dan memasuki pintu ketenangan jiwa sejati."
+  },
+  {
+    "id": "default-14",
+    "title": "Cermin Qolbu",
+    "cat": "praktis",
+    "catLabel": "ESQ, Rezeki & Refleksi",
+    "url": "https://nagapersada.github.io/Cermin-Qolbu/",
+    "desc": "Ruang muhasabah untuk menjernihkan cermin hati agar memantulkan cahaya kebenaran dan akhlak mulia."
+  }
+];
+
+const CATEGORY_MAP = {
+  baru: "Materi & Aplikasi Baru",
+  kitab: "Seri Kajian Kitab",
+  marifat: "Tauhid & Ma'rifat",
+  praktis: "ESQ, Rezeki & Refleksi"
+};
+
+const STORAGE_KEY = "warisan_ilmu_custom_apps_v1";
+
+function loadCustomApps() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveCustomApps(list) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+  } catch (e) {}
+}
+
+let customApps = loadCustomApps();
+
+function getAllApps() {
+  return [...DEFAULT_APPS, ...customApps];
+}
+
+// Generate crisp gold-on-emerald PWA icon dynamically
+function generateBrandIcons() {
+  try {
+    const canvas = document.createElement('canvas');
+    canvas.width = 512;
+    canvas.height = 512;
+    const ctx = canvas.getContext('2d');
+
+    const bg = ctx.createRadialGradient(256, 180, 40, 256, 256, 360);
+    bg.addColorStop(0, '#184e3e');
+    bg.addColorStop(0.65, '#0b261f');
+    bg.addColorStop(1, '#05120e');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, 512, 512);
+
+    ctx.strokeStyle = '#e8d5a8';
+    ctx.lineWidth = 10;
+    ctx.strokeRect(24, 24, 464, 464);
+    ctx.strokeStyle = 'rgba(201,168,106,0.5)';
+    ctx.lineWidth = 3;
+    ctx.strokeRect(40, 40, 432, 432);
+
+    ctx.beginPath();
+    ctx.arc(256, 232, 118, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(201,168,106,0.12)';
+    ctx.fill();
+    ctx.lineWidth = 6;
+    ctx.strokeStyle = '#e8d5a8';
+    ctx.stroke();
+
+    ctx.fillStyle = '#fff5d6';
+    ctx.font = 'bold 104px Georgia, serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('WI', 256, 236);
+
+    ctx.fillStyle = '#e8d5a8';
+    ctx.font = 'bold 28px sans-serif';
+    ctx.fillText('WARISAN ILMU', 256, 404);
+
+    const pngUrl = canvas.toDataURL('image/png');
+    document.getElementById('appleIconLink').href = pngUrl;
+    document.getElementById('favIconLink').href = pngUrl;
+
+    const fallbackLogo = (imgEl) => {
+      imgEl.onerror = () => { imgEl.src = pngUrl; };
+    };
+    fallbackLogo(document.getElementById('coverLogo'));
+    fallbackLogo(document.getElementById('topLogoImg'));
+
+    const manifest = {
+      name: "Warisan Ilmu — Deka Sonjaya",
+      short_name: "Warisan Ilmu",
+      description: "Portal Kajian Tauhid, Ma'rifat, ESQ & Materi Interaktif oleh Deka Sonjaya",
+      start_url: window.location.href,
+      scope: "./",
+      display: "standalone",
+      orientation: "any",
+      background_color: "#071512",
+      theme_color: "#071512",
+      icons: [
+        { src: pngUrl, sizes: "192x192", type: "image/png", purpose: "any maskable" },
+        { src: pngUrl, sizes: "512x512", type: "image/png", purpose: "any maskable" }
+      ]
+    };
+    const blob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
+    document.getElementById('manifestLink').href = URL.createObjectURL(blob);
+  } catch (e) {}
+}
+generateBrandIcons();
+
+// UI Elements
+const coverView = document.getElementById('coverView');
+const portalView = document.getElementById('portalView');
+const viewerView = document.getElementById('viewerView');
+const filterChips = document.getElementById('filterChips');
+const appsGrid = document.getElementById('appsGrid');
+const emptyState = document.getElementById('emptyState');
+const resultLabel = document.getElementById('resultLabel');
+const searchInput = document.getElementById('searchInput');
+const appFrame = document.getElementById('appFrame');
+const frameLoader = document.getElementById('frameLoader');
+const toastEl = document.getElementById('toast');
+
+let currentCat = 'all';
+let searchQuery = '';
+let toastTimer = null;
+
+function showToast(msg) {
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2800);
+}
+
+function escapeHtml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function showView(target) {
+  [coverView, portalView, viewerView].forEach(v => v.classList.toggle('active', v === target));
+}
+
+async function requestFullScreenSafe() {
+  try {
+    const el = document.documentElement;
+    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+      if (el.requestFullscreen) await el.requestFullscreen();
+      else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+      else if (el.msRequestFullscreen) el.msRequestFullscreen();
+    }
+  } catch (e) {}
+}
+
+async function toggleFullScreen() {
+  try {
+    if (document.fullscreenElement || document.webkitFullscreenElement) {
+      if (document.exitFullscreen) await document.exitFullscreen();
+      else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+    } else {
+      await requestFullScreenSafe();
+    }
+  } catch (e) {}
+}
+
+function renderFilterChips() {
+  const all = getAllApps();
+  const counts = {
+    all: all.length,
+    baru: all.filter(a => a.cat === 'baru').length,
+    kitab: all.filter(a => a.cat === 'kitab').length,
+    marifat: all.filter(a => a.cat === 'marifat').length,
+    praktis: all.filter(a => a.cat === 'praktis').length
+  };
+
+  const chipDefs = [
+    { id: 'all', label: `Semua (${counts.all})` },
+    ...(counts.baru > 0 ? [{ id: 'baru', label: `Materi Baru (${counts.baru})` }] : []),
+    { id: 'kitab', label: `Seri Kitab (${counts.kitab})` },
+    { id: 'marifat', label: `Tauhid & Ma’rifat (${counts.marifat})` },
+    { id: 'praktis', label: `ESQ, Rezeki & Refleksi (${counts.praktis})` }
+  ];
+
+  if (currentCat !== 'all' && counts[currentCat] === 0) {
+    currentCat = 'all';
+  }
+
+  filterChips.innerHTML = chipDefs.map(c =>
+    `<button class="chip${currentCat === c.id ? ' active' : ''}" data-cat="${c.id}">${c.label}</button>`
+  ).join('');
+}
+
+function renderApps() {
+  const all = getAllApps();
+  document.getElementById('coverTotalCount').textContent = all.length;
+  renderFilterChips();
+
+  const q = searchQuery.trim().toLowerCase();
+  const indexedAll = all.map((app, idx) => ({
+    ...app,
+    displayNum: String(idx + 1).padStart(2, '0')
+  }));
+
+  const filtered = indexedAll.filter(app => {
+    const matchCat = currentCat === 'all' || app.cat === currentCat;
+    const matchQ = !q ||
+      app.title.toLowerCase().includes(q) ||
+      (app.desc || '').toLowerCase().includes(q) ||
+      (app.catLabel || '').toLowerCase().includes(q) ||
+      app.url.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+
+  appsGrid.innerHTML = '';
+  resultLabel.innerHTML = `Menampilkan <b>${filtered.length}</b> dari <b>${all.length}</b> aplikasi`;
+  emptyState.style.display = filtered.length === 0 ? 'block' : 'none';
+
+  filtered.forEach(app => {
+    const isCustom = Boolean(app.isCustom);
+    const card = document.createElement('article');
+    card.className = 'app-card';
+    card.innerHTML = `
+      <div>
+        <div class="card-top">
+          <div class="card-num">${app.displayNum}</div>
+          <div class="card-badges">
+            ${isCustom ? '<span class="badge-new">Baru</span>' : ''}
+            <div class="card-cat">${escapeHtml(app.catLabel)}</div>
+          </div>
+        </div>
+        <h2 class="card-title">${escapeHtml(app.title)}</h2>
+        <p class="card-desc">${escapeHtml(app.desc || 'Aplikasi web interaktif dalam koleksi Warisan Ilmu.')}</p>
+      </div>
+      <div class="card-actions">
+        <button class="btn-open-app" data-action="open">Buka Aplikasi →</button>
+        ${isCustom ? `
+          <button class="btn-card-icon" data-action="edit" title="Edit Link">✎</button>
+          <button class="btn-card-icon del" data-action="delete" title="Hapus Link">🗑</button>
+        ` : ''}
+        <a class="btn-card-icon" href="${escapeHtml(app.url)}" target="_blank" rel="noopener noreferrer" title="Buka di Tab Browser Baru">↗</a>
+      </div>
+    `;
+
+    card.querySelector('[data-action="open"]').onclick = () => openEmbeddedApp(app);
+    if (isCustom) {
+      card.querySelector('[data-action="edit"]').onclick = () => openEditModal(app);
+      card.querySelector('[data-action="delete"]').onclick = () => deleteCustomApp(app.id, app.title);
+    }
+    appsGrid.appendChild(card);
+  });
+}
+
+function openEmbeddedApp(app) {
+  requestFullScreenSafe();
+  document.getElementById('viewerAppTitle').textContent = `${app.displayNum} • ${app.title}`;
+  document.getElementById('viewerAppCat').textContent = app.catLabel;
+  document.getElementById('btnViewerExt').href = app.url;
+  document.getElementById('loaderTitle').textContent = `Memuat ${app.title}...`;
+  frameLoader.classList.remove('hidden');
+  appFrame.src = app.url;
+  showView(viewerView);
+}
+
+appFrame.addEventListener('load', () => {
+  frameLoader.classList.add('hidden');
+});
+
+// Filter & Search events
+filterChips.addEventListener('click', e => {
+  const btn = e.target.closest('.chip');
+  if (!btn) return;
+  currentCat = btn.dataset.cat;
+  renderApps();
+});
+
+searchInput.addEventListener('input', e => {
+  searchQuery = e.target.value;
+  renderApps();
+});
+
+// Add / Edit Link Modal Logic
+const formModal = document.getElementById('formModal');
+const appForm = document.getElementById('appForm');
+const editAppId = document.getElementById('editAppId');
+const inputTitle = document.getElementById('inputTitle');
+const inputUrl = document.getElementById('inputUrl');
+const inputCat = document.getElementById('inputCat');
+const inputDesc = document.getElementById('inputDesc');
+const formError = document.getElementById('formError');
+
+function openAddModal() {
+  document.getElementById('formModalTitle').textContent = 'Tambah Link Materi Baru';
+  editAppId.value = '';
+  inputTitle.value = '';
+  inputUrl.value = '';
+  inputCat.value = 'baru';
+  inputDesc.value = '';
+  formError.style.display = 'none';
+  formModal.classList.add('open');
+  setTimeout(() => inputTitle.focus(), 100);
+}
+
+function openEditModal(app) {
+  document.getElementById('formModalTitle').textContent = 'Edit Link Materi';
+  editAppId.value = app.id;
+  inputTitle.value = app.title;
+  inputUrl.value = app.url;
+  inputCat.value = app.cat || 'baru';
+  inputDesc.value = app.desc || '';
+  formError.style.display = 'none';
+  formModal.classList.add('open');
+}
+
+function closeFormModal() {
+  formModal.classList.remove('open');
+}
+
+function normalizeUrl(rawUrl) {
+  let u = rawUrl.trim();
+  if (!u) return '';
+  if (!/^https?:\/\//i.test(u)) {
+    u = 'https://' + u;
+  }
+  try {
+    const parsed = new URL(u);
+    return parsed.href;
+  } catch (e) {
+    return '';
+  }
+}
+
+appForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const title = inputTitle.value.trim();
+  const cleanUrl = normalizeUrl(inputUrl.value);
+  const cat = inputCat.value;
+  const desc = inputDesc.value.trim();
+
+  if (!title) {
+    formError.textContent = 'Silakan isi judul materi atau aplikasi terlebih dahulu.';
+    formError.style.display = 'block';
+    return;
+  }
+  if (!cleanUrl) {
+    formError.textContent = 'Format URL tidak valid. Contoh: https://nagapersada.github.io/Kajian-Baru/';
+    formError.style.display = 'block';
+    return;
+  }
+
+  const targetId = editAppId.value;
+  if (targetId) {
+    customApps = customApps.map(item =>
+      item.id === targetId
+        ? { ...item, title, url: cleanUrl, cat, catLabel: CATEGORY_MAP[cat] || 'Materi & Aplikasi Baru', desc }
+        : item
+    );
+    showToast('Perubahan link berhasil disimpan');
+  } else {
+    customApps.push({
+      id: 'custom-' + Date.now(),
+      title,
+      url: cleanUrl,
+      cat,
+      catLabel: CATEGORY_MAP[cat] || 'Materi & Aplikasi Baru',
+      desc: desc || 'Materi dan aplikasi web interaktif dalam koleksi Warisan Ilmu.',
+      isCustom: true
+    });
+    showToast('Link baru berhasil ditambahkan');
+  }
+
+  saveCustomApps(customApps);
+  closeFormModal();
+  renderApps();
+});
+
+function deleteCustomApp(id, title) {
+  if (!confirm(`Hapus "${title}" dari daftar Warisan Ilmu?`)) return;
+  customApps = customApps.filter(item => item.id !== id);
+  saveCustomApps(customApps);
+  renderApps();
+  showToast('Link berhasil dihapus');
+}
+
+document.getElementById('btnOpenAddModal').onclick = openAddModal;
+document.getElementById('btnCloseFormModal').onclick = closeFormModal;
+document.getElementById('btnCancelForm').onclick = closeFormModal;
+formModal.onclick = e => { if (e.target === formModal) closeFormModal(); };
+
+// Backup / Restore Modal Logic
+const backupModal = document.getElementById('backupModal');
+document.getElementById('btnOpenBackupModal').onclick = () => {
+  document.getElementById('importJsonInput').value = '';
+  backupModal.classList.add('open');
+};
+document.getElementById('btnCloseBackupModal').onclick = () => backupModal.classList.remove('open');
+backupModal.onclick = e => { if (e.target === backupModal) backupModal.classList.remove('open'); };
+
+document.getElementById('btnCopyBackup').onclick = async () => {
+  if (customApps.length === 0) {
+    showToast('Belum ada link tambahan untuk dicadangkan');
+    return;
+  }
+  const payload = JSON.stringify(customApps);
+  try {
+    await navigator.clipboard.writeText(payload);
+    showToast(`Berhasil menyalin ${customApps.length} link cadangan`);
+  } catch (e) {
+    document.getElementById('importJsonInput').value = payload;
+    showToast('Kode cadangan ditampilkan di kotak bawah, silakan salin');
+  }
+};
+
+document.getElementById('btnImportBackup').onclick = () => {
+  const raw = document.getElementById('importJsonInput').value.trim();
+  if (!raw) {
+    showToast('Tempel kode cadangan terlebih dahulu');
+    return;
+  }
+  try {
+    const imported = JSON.parse(raw);
+    if (!Array.isArray(imported)) throw new Error('Invalid');
+    let addedCount = 0;
+    const existingUrls = new Set(getAllApps().map(a => a.url.toLowerCase()));
+    imported.forEach(item => {
+      const cleanUrl = normalizeUrl(item.url || '');
+      if (item.title && cleanUrl && !existingUrls.has(cleanUrl.toLowerCase())) {
+        const cat = CATEGORY_MAP[item.cat] ? item.cat : 'baru';
+        customApps.push({
+          id: 'custom-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6),
+          title: String(item.title).trim(),
+          url: cleanUrl,
+          cat,
+          catLabel: CATEGORY_MAP[cat],
+          desc: String(item.desc || 'Materi interaktif Warisan Ilmu.').trim(),
+          isCustom: true
+        });
+        existingUrls.add(cleanUrl.toLowerCase());
+        addedCount++;
+      }
+    });
+    saveCustomApps(customApps);
+    renderApps();
+    backupModal.classList.remove('open');
+    showToast(addedCount > 0 ? `${addedCount} link baru berhasil dipulihkan` : 'Semua link sudah ada di daftar');
+  } catch (e) {
+    showToast('Format kode cadangan tidak valid');
+  }
+};
+
+// Main Navigation Buttons
+document.getElementById('btnEnterPortal').onclick = () => {
+  requestFullScreenSafe();
+  showView(portalView);
+};
+document.getElementById('btnBackCover').onclick = () => {
+  showView(coverView);
+};
+document.getElementById('btnViewerBack').onclick = () => {
+  appFrame.src = 'about:blank';
+  showView(portalView);
+};
+document.getElementById('btnFullscreen').onclick = toggleFullScreen;
+document.getElementById('btnViewerFs').onclick = toggleFullScreen;
+
+// PWA Install Handling
+let deferredPrompt = null;
+const installModal = document.getElementById('installModal');
+const directInstallWrap = document.getElementById('directInstallWrap');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  directInstallWrap.style.display = 'block';
+});
+
+document.getElementById('btnTriggerNativeInstall').onclick = async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  directInstallWrap.style.display = 'none';
+  installModal.classList.remove('open');
+};
+
+function openInstallModal() {
+  installModal.classList.add('open');
+}
+document.getElementById('btnCoverInstall').onclick = openInstallModal;
+document.getElementById('btnHeaderInstall').onclick = openInstallModal;
+document.getElementById('btnCloseInstall').onclick = () => installModal.classList.remove('open');
+installModal.onclick = (e) => {
+  if (e.target === installModal) installModal.classList.remove('open');
+};
+
+// Initial Render
+renderApps();
+</script>
+</body>
+</html>
